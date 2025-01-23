@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReversiOthello")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b8217df64062c07cd8c476f1444c472356f4241")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3ee34f90edb05a82d194782c63ef0c325c36810")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReversiOthello")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReversiOthello")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

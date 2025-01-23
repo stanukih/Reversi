@@ -16,34 +16,6 @@
     </Design.DataContext>
 
     <WrapPanel>
-        <!-- <Grid  -->
-        <!--     Background="Bisque"  -->
-        <!--     Width="300"  -->
-        <!--     Height="300"  -->
-        <!--     Margin="50" -->
-        <!--     ShowGridLines="True" -->
-        <!--     > -->
-        <!--     <Grid.ColumnDefinitions> -->
-        <!--         <ColumnDefinition Width="*"></ColumnDefinition> -->
-        <!--         <ColumnDefinition Width="*"></ColumnDefinition> -->
-        <!--         <ColumnDefinition Width="*"></ColumnDefinition> -->
-        <!--         <ColumnDefinition Width="*"></ColumnDefinition> -->
-        <!--         <ColumnDefinition Width="*"></ColumnDefinition> -->
-        <!--         <ColumnDefinition Width="*"></ColumnDefinition> -->
-        <!--         <ColumnDefinition Width="*"></ColumnDefinition> -->
-        <!--         <ColumnDefinition Width="*"></ColumnDefinition> -->
-        <!--     </Grid.ColumnDefinitions> -->
-        <!--     <Grid.RowDefinitions> -->
-        <!--         <RowDefinition Height="*"></RowDefinition> -->
-        <!--         <RowDefinition Height="*"></RowDefinition> -->
-        <!--         <RowDefinition Height="*"></RowDefinition> -->
-        <!--         <RowDefinition Height="*"></RowDefinition> -->
-        <!--         <RowDefinition Height="*"></RowDefinition> -->
-        <!--         <RowDefinition Height="*"></RowDefinition> -->
-        <!--         <RowDefinition Height="*"></RowDefinition> -->
-        <!--         <RowDefinition Height="*"></RowDefinition> -->
-        <!--     </Grid.RowDefinitions> -->
-        <!-- </Grid> -->
         <ItemsControl ItemsSource="{Binding fields}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -84,7 +56,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <WrapPanel Background="Aqua" Width="480" Height="480"
-                   IsVisible="{Binding gameEnd}">
+                   >
             <StackPanel Orientation="Vertical">
                 <TextBlock 
                     Text="Player:"
@@ -103,8 +75,8 @@
                         Margin="30"
                         />
                 <StackPanel Orientation="Horizontal"
-                            Margin="30">
-                            <!-- IsVisible="{Binding gameEnd}"> -->
+                            Margin="30"
+                            IsVisible="{Binding gameEnd}">
                     <StackPanel Orientation="Vertical">
                         <Ellipse 
                             Fill="LightSalmon"
@@ -112,7 +84,8 @@
                             Height="58"
                             Margin="0 10"
                         />
-                        <TextBox Text="{Binding gameEndWhitePoints}"></TextBox>
+                        <TextBox Text="{Binding gameEndWhitePoints}"
+                                 IsEnabled="False"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <Ellipse 
@@ -121,11 +94,17 @@
                             Height="58"
                             Margin="0 10"
                         />
-                        <TextBox Text="{Binding gameEndBlackPoints}"></TextBox>
+                        <TextBox 
+                            Text="{Binding gameEndBlackPoints}"
+                            IsEnabled="False"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
             
         </WrapPanel>
+        <CheckBox 
+            IsVisible="{Binding !gameEnd}"
+            Content="Pelaatko botin vasta?"
+            IsChecked="{Binding botPlayer}"></CheckBox>
     </WrapPanel>
 </Window>

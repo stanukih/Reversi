@@ -15,6 +15,8 @@ public partial class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
     }
     public ObservableCollection<field> fields { get; set; }
     public field[,] fieldsArray { get; set; }
+    
+    public bool botPlayer { get; set; } = false;
 
     public string activePlayerColor
     {
@@ -34,9 +36,11 @@ public partial class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
     public void initData()
     {
         gameEnd = false;
+        botPlayer = false;
         activePlayer = fieldStatus.WhiteField;
         RaisePropertyChanged(nameof(activePlayerColor));
         RaisePropertyChanged(nameof(gameEnd));
+        RaisePropertyChanged(nameof(botPlayer));
         fields = new ObservableCollection<field>();
         fieldsArray = new field[8, 8];
         for (int i = 0; i < 8; i++)
@@ -113,7 +117,10 @@ public partial class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
         foreach (var item in fields)
         {
             if (item.status != fieldStatus.FreeField) continue;
-            if (item.enabled == true) return;
+            if (item.enabled == true)
+            {
+                return;
+            }
         }
         if (movePassed)
         {
@@ -330,6 +337,32 @@ public partial class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
         }
         return 0;
     }
+
+    public void BotPlay()
+    {
+        while (!gameEnd)
+        {
+            
+        
+        foreach (var item in fields)
+        {
+            if (item.enabled == true && item.status == fieldStatus.FreeField)
+            {
+                var rand  = new Random();
+                int numerRand = rand.Next(5593);
+                if (numerRand % 2 == 1)
+                {
+                    item.putChip();
+                    return;
+                }
+                
+            }
+            
+        }
+        }
+        
+        
+    }
 }
 
 
@@ -428,6 +461,14 @@ public class field: INotifyPropertyChanged
         // public int leftBottom { get; set; }
         
         DataMainWindowViewModel.swipePlayer();
+        Console.WriteLine(DataMainWindowViewModel.activePlayer);
+        if (DataMainWindowViewModel.botPlayer)
+        {
+            if (DataMainWindowViewModel.activePlayer == fieldStatus.BlackField) 
+                DataMainWindowViewModel.BotPlay();
+        }
+        
+        
         update();
     }
 
